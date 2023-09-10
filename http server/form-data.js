@@ -6,7 +6,7 @@ const server = http.createServer((req, res) => {
 	const method = req.method;
 
 	if (url === '/') {
-		res.write(fs.readFileSync('../public/index.html'));
+		res.write(fs.readFileSync('../views/index.html'));
 		return res.end();
 	}
 
