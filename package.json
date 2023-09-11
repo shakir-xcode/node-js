@@ -10,12 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
-<<<<<<< HEAD
-    "express": "^4.18.2"
-=======
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "pug": "^3.0.2"
->>>>>>> f4ba10210823410c29d24b08b9cd52616382bd8f
   }
 }
