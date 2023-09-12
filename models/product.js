@@ -3,18 +3,21 @@ const path = require('path');
 
 const p = path.join(
     path.dirname(process.mainModule.filename),
-    '..',
     'data',
     'products.json'
 );
 
 
 module.exports = class Product {
-    constructor(title) {
+    constructor(title, price, imageUrl, description) {
         this.title = title;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.description = description;
     }
 
     save() {
+        this.id = Math.random().toString();
         fs.readFile(p, (err, fileContent) => {
             let products = [];
             if (!err)
@@ -22,7 +25,7 @@ module.exports = class Product {
             products.push(this);
             fs.writeFile(p, JSON.stringify(products), (err) => {
                 if (err)
-                    console.log('rrrr ', err);
+                    console.log('Error occured.. ', err);
             })
         })
     }
@@ -32,6 +35,16 @@ module.exports = class Product {
             if (err)
                 return cb([]);
             cb(JSON.parse(fileContent));
+        })
+    }
+
+    static getProductDetail(productId, cb) {
+        fs.readFile(p, (err, fileContent) => {
+            if (err)
+                return cb([]);
+            const allProds = JSON.parse(fileContent);
+            let prod = allProds.find(p => p.id === productId);
+            cb(prod);
         })
     }
 }
