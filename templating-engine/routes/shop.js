@@ -9,7 +9,7 @@ router.get('/products', shopController.getProducts)
 
 router.get('/product/:productId', shopController.getProductDetail)
 
-router.get('/cart', shopController.getCart)
+router.post('/cart', shopController.postAddToCart)
 
 router.get('/orders', shopController.getOrders)
 

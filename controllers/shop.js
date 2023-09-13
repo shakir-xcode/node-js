@@ -53,3 +53,18 @@ exports.getCheckout = (req, res) => {
     })
 }
 
+// ----------- POST
+
+exports.postAddToCart = (req, res) => {
+    Product.addToCart(req.body.productId, () => {
+        Product.getCartProducts((cartProducts) => {
+            res.render("shop/cart", {
+                path: "/cart",
+                docTitle: "Your Cart",
+                prods: cartProducts,
+            })
+        })
+    })
+
+
+}
