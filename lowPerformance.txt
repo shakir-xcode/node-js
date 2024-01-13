@@ -1,0 +1,52 @@
+loadtest -n 1200 -c 200 -k http://localhost:4000/timer
+Requests: 374 (62%), requests per second: 75, mean latency: 1289.7 ms
+Errors: 136, accumulated errors: 136, 36.4% of total requests
+Requests: 380 (63%), requests per second: 76, mean latency: 1320.7 ms
+Errors: 143, accumulated errors: 143, 37.6% of total requests
+
+Target URL:          http://localhost:4000/timer
+Max requests:        1200
+Concurrent clients:  400
+Running on cores:    2
+Agent:               keepalive
+
+Completed requests:  1200
+Total errors:        303
+Total time:          9.273 s
+Mean latency:        2391.4 ms
+Effective rps:       129
+
+Percentage of requests served within a certain time
+  50%      1974 ms
+  90%      7061 ms
+  95%      7068 ms
+  99%      7074 ms
+ 100%      7075 ms (longest request)
+
+   -1:   303 errors
+
+
+-----------------------------------------------------
+
+ loadtest -n 1200 -c 200 -k http://localhost:4000/timer
+
+Target URL:          http://localhost:4000/timer
+Max requests:        1200
+Concurrent clients:  400
+Running on cores:    2
+Agent:               keepalive
+
+Completed requests:  1200
+Total errors:        306
+Total time:          2.761 s
+Mean latency:        682.8 ms
+Effective rps:       435
+
+Percentage of requests served within a certain time
+  50%      502 ms
+  90%      2000 ms
+  95%      2003 ms
+  99%      2007 ms
+ 100%      2281 ms (longest request)
+
+   -1:   306 errors
