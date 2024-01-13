@@ -18,6 +18,7 @@ module.exports = class Product {
 
     save() {
         this.id = Math.random().toString();
+        this.cart = false;
         fs.readFile(p, (err, fileContent) => {
             let products = [];
             if (!err)
@@ -45,6 +46,36 @@ module.exports = class Product {
             const allProds = JSON.parse(fileContent);
             let prod = allProds.find(p => p.id === productId);
             cb(prod);
+        })
+    }
+
+    static addToCart(productId, cb) {
+        fs.readFile(p, (err, fileContent) => {
+            if (err)
+                return;
+            const allProds = JSON.parse(fileContent);
+            const updatedProducts = allProds.map(p => {
+                if (p.id !== productId)
+                    return p;
+                return { ...p, cart: true };
+            });
+            fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
+                if (err)
+                    console.log('Error occured.. ', err);
+                else
+                    cb()
+            })
+        })
+    }
+
+    static getCartProducts(cb) {
+        fs.readFile(p, (err, fileContent) => {
+            if (err)
+                return cb([]);
+            const allProds = JSON.parse(fileContent);
+            let cartProducts = allProds.filter(p => p.cart === true);
+            console.log('cart prods = ', cartProducts)
+            cb(cartProducts);
         })
     }
 }
